@@ -43,119 +43,38 @@ $(function() {
     // Set up global UI hooks.
     ///////////////////////////
 
-    $("#volume-type").change(function() {
-      $("#sync-volumes-wrapper").hide();
-      $("#volume-file").hide();
+    
+    // $("#volume-type").change(function() {
+    //   $("#sync-volumes-wrapper").hide();
+    //   $("#volume-file").hide();
 
-      if ($(this).val() === "functional_minc") {
-        viewer.clearVolumes();
-        viewer.loadVolume({
-          type: "minc",
-          header_url: "models/functional.mnc.header",
-          raw_data_url: "models/functional.mnc.raw",
-          template: {
-            element_id: "volume-ui-template",
-            viewer_insert_class: "volume-viewer-display"
-          }
-        }, function() {
-          $(".slice-display").css("display", "inline");
-          $(".volume-controls").css("width", "auto");
-        });
-      } else if ($(this).val() === "structural_minc") {
-        $("#sync-volumes-wrapper").show();
-        viewer.clearVolumes();
-        viewer.loadVolumes({
-          volumes: [
-            {
-              type: "minc",
-              header_url: "models/structural1.mnc.header",
-              raw_data_url: "models/structural1.mnc.raw",
-              template: {
-                element_id: "volume-ui-template",
-                viewer_insert_class: "volume-viewer-display"
-              }
-            },
-            {
-              type: 'minc',
-              header_url: "models/structural2.mnc.header",
-              raw_data_url: "models/structural2.mnc.raw",
-              template: {
-                element_id: "volume-ui-template",
-                viewer_insert_class: "volume-viewer-display"
-              }
-            }
-          ],
-          overlay: {
-            template: {
-              element_id: "overlay-ui-template",
-              viewer_insert_class: "overlay-viewer-display"
-            }
-          }
-        });
-      } else if ($(this).val() === "NIfTI-1"){
-        $("#sync-volumes-wrapper").show();
-        viewer.clearVolumes();
-        viewer.loadVolumes({
-          volumes: [
-            {
-              type: "nifti1",
-              nii_url: "models/functional.nii",
-              template: {
-                element_id: "volume-ui-template",
-                viewer_insert_class: "volume-viewer-display"
-              }
-            },
-            {
-              type: 'nifti1',
-              nii_url: "models/structural.nii",
-              template: {
-                element_id: "volume-ui-template",
-                viewer_insert_class: "volume-viewer-display"
-              }
-            }
-          ],
-          overlay: {
-            template: {
-              element_id: "overlay-ui-template",
-              viewer_insert_class: "overlay-viewer-display"
-            }
-          }
-        });
-      } else if ($(this).val() === "MGH"){
-        $("#sync-volumes-wrapper").show();
-        viewer.clearVolumes();
-        viewer.loadVolumes({
-          volumes: [
-            {
-              type: "mgh",
-              url: "models/t1.mgh",
-              template: {
-                element_id: "volume-ui-template",
-                viewer_insert_class: "volume-viewer-display"
-              }
-            },
-            {
-              type: 'mgh',
-              url: "models/dti.mgh",
-              template: {
-                element_id: "volume-ui-template",
-                viewer_insert_class: "volume-viewer-display"
-              }
-            }
-          ],
-          overlay: {
-            template: {
-              element_id: "overlay-ui-template",
-              viewer_insert_class: "overlay-viewer-display"
-            }
-          }
-        });
-      } else {
-        $("#volume-file").show();
-        viewer.clearVolumes();
-      }
+    //   if ($(this).val() === "NIfTI-1"){
+    //     $("#sync-volumes-wrapper").show();
+    //     viewer.clearVolumes();
+    //     viewer.loadVolumes({
+    //       volumes: [
+    //         {
+    //           type: 'nifti1',
+    //           nii_url: "models/structural.nii",
+    //           template: {
+    //             element_id: "volume-ui-template",
+    //             viewer_insert_class: "volume-viewer-display"
+    //           }
+    //         }
+    //       ],
+    //       overlay: {
+    //         template: {
+    //           element_id: "overlay-ui-template",
+    //           viewer_insert_class: "overlay-viewer-display"
+    //         }
+    //       }
+    //     });
+    //   }  else {
+    //     $("#volume-file").show();
+    //     viewer.clearVolumes();
+    //   }
 
-    });
+    // });
 
     // Change viewer panel canvas size.
     $("#panel-size").change(function() {
@@ -247,23 +166,6 @@ $(function() {
       img.src = canvas.toDataURL();
     });
 
-    // Load a new model from a MINC file that the user has
-    // selected.
-    $("#volume-file-minc-submit").click(function() {
-      viewer.clearVolumes();
-      viewer.loadVolume({
-        type: "minc",
-        header_file: document.getElementById("header-file"),
-        raw_data_file: document.getElementById("raw-data-file"),
-        template: {
-          element_id: "volume-ui-template",
-          viewer_insert_class: "volume-viewer-display"
-        }
-      }, function() {
-        $(".slice-display").css("display", "inline");
-        $(".volume-controls").css("width", "auto");
-      });
-    });
 
     // Load a new model from a NIfTI-1 file that the user has
     // selected.
@@ -282,22 +184,6 @@ $(function() {
       });
     });
 
-    // Load a new model from a MGH file that the user has
-    // selected.
-    $("#volume-file-mgh-submit").click(function() {
-      viewer.clearVolumes();
-      viewer.loadVolume({
-        type: "mgh",
-        file: document.getElementById("mgh-file"),
-        template: {
-          element_id: "volume-ui-template",
-          viewer_insert_class: "volume-viewer-display"
-        }
-      }, function() {
-        $(".slice-display").css("display", "inline");
-        $(".volume-controls").css("width", "auto");
-      });
-    });
 
     $(document).keypress(function(e) {
       if (e.keyCode === 114) {
@@ -893,22 +779,12 @@ $(function() {
     viewer.loadVolumes({
       volumes: [
         {
-          type: "minc",
-          header_url: "models/structural1.mnc.header",
-          raw_data_url: "models/structural1.mnc.raw",
-          template: {
-            element_id: "volume-ui-template",
-            viewer_insert_class: "volume-viewer-display"
-          }
-        },
-        {
-          type: 'minc',
-          header_url: "models/structural2.mnc.header",
-          raw_data_url: "models/structural2.mnc.raw",
-          template: {
-            element_id: "volume-ui-template",
-            viewer_insert_class: "volume-viewer-display"
-          }
+            type: 'nifti1',
+            nii_url: "models/structural.nii",
+            template: {
+              element_id: "volume-ui-template",
+              viewer_insert_class: "volume-viewer-display"
+            }   
         }
       ],
       overlay: {
