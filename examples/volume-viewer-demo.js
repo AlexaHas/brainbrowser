@@ -42,54 +42,24 @@ $(function() {
     ///////////////////////////
     // Set up global UI hooks.
     ///////////////////////////
-
-    
-    // $("#volume-type").change(function() {
-    //   $("#sync-volumes-wrapper").hide();
-    //   $("#volume-file").hide();
-
-    //   if ($(this).val() === "NIfTI-1"){
-    //     $("#sync-volumes-wrapper").show();
-    //     viewer.clearVolumes();
-    //     viewer.loadVolumes({
-    //       volumes: [
-    //         {
-    //           type: 'nifti1',
-    //           nii_url: "models/structural.nii",
-    //           template: {
-    //             element_id: "volume-ui-template",
-    //             viewer_insert_class: "volume-viewer-display"
-    //           }
-    //         }
-    //       ],
-    //       overlay: {
-    //         template: {
-    //           element_id: "overlay-ui-template",
-    //           viewer_insert_class: "overlay-viewer-display"
-    //         }
-    //       }
-    //     });
-    //   }  else {
-    //     $("#volume-file").show();
-    //     viewer.clearVolumes();
-    //   }
-
-    // });
+  
 
     // Change viewer panel canvas size.
     $("#panel-size").change(function() {
       var size = parseInt($(this).val(), 10);
+      
 
       if (size < 0) {
         viewer.setAutoResize(true, 'volume-controls');
         $('#brainbrowser-wrapper').css("width", "90%");
+        $(".slice-display").css("display", "inline");
         $('#volume-viewer').css("width", "100%");
         $('#brainbrowser').css("width", "100%");
         viewer.doAutoResize();
       }
       else {
         viewer.setAutoResize(false);
-        $('#brainbrowser-wrapper').css("width", "60em");
+        $(".slice-display").css("display", "inline");
         $('#volume-viewer').css("width", "");
         $('#brainbrowser').css("width", "");
         $('.volume-controls').css("width", "");
@@ -796,6 +766,7 @@ $(function() {
       complete: function() {
         loading_div.hide();
         $("#brainbrowser-wrapper").slideDown({duration: 600});
+        $(".slice-display").css("display", "inline");
       }
     });
 

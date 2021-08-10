@@ -34,10 +34,10 @@ body {
 }
 
 #volume-viewer {
-  display: inline-block;
-  background-color: #FFFFFF;
+  display: inline;
+  background-color: #000000;
   padding: 0.5em;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 
@@ -46,8 +46,8 @@ body {
 }
 
 canvas.slice-display {
-  display: block;
-  margin: 3px 5px;
+  display: inline;
+  margin: 2px 1px;
 }
 
 .volume-viewer-controls {
